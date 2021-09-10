@@ -1,5 +1,9 @@
+import 'package:flutter_application_1/Pages/Plaza_Page.dart';
+import 'package:flutter_application_1/Pages/comopolitan_Page.dart';
 import 'package:flutter_application_1/app_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/Pages/eko_page.dart';
+import 'Pages/mediterrâneo_Page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -9,54 +13,88 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  int counter = 0;
-  bool isDartTheme = false;
-
   @override
   Widget build(BuildContext context) {
     var scaffold = Scaffold(
+      drawer: Drawer(
+        child: Column(
+          children: [
+            UserAccountsDrawerHeader(
+                accountName: Text('Knoveseg'),
+                accountEmail: Text('Knoveseg@gmail.com')),
+            ListTile(
+              leading: Icon(Icons.home),
+              title: Text('Logout'),
+              subtitle: Text('Finalizar a sessão'),
+              onTap: () {
+                Navigator.of(context).pushReplacementNamed('/');
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.people),
+              title: Text('Portal do Cliente'),
+              onTap: () {
+                print("Colocar a url do `Portal do Cliente`");
+              },
+            ),
+          ],
+        ),
+      ),
       appBar: AppBar(
         title: Text('Home Page'),
         actions: [
           CustomSwitch(),
         ],
       ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        //para movimentar as telas usamos o "ListView", mas o contrário usa o Column
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Contador: $counter'),
-            Container(
-              height: 10,
-            ),
-            CustomSwitch(),
-            Container(
-              height: 50,
-            ),
-            Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 50,
-                    height: 50,
-                    color: Colors.black,
-                  ),
-                ]),
-          ],
+      body: Center(
+        child: Container(
+          height: 100,
+          width: 100,
+          color: Colors.red,
+          child: GestureDetector(
+            onTap: () async {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => EkoPage()),
+              );
+            },
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          setState(() {
-            counter++;
-          });
-        },
+        child: Container(
+          height: 100,
+          width: 400,
+          color: Colors.green,
+          child: GestureDetector(
+            onTap: () async {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => PlazaPage()),
+              );
+            },
+          ),
+        ),
+        child: Container(
+          height: 300,
+          width: 100,
+          color: Colors.purple,
+          child: GestureDetector(
+            onTap: () async {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ComopolitanPage()),
+              );
+            },
+          ),
+        ),
+        child: Container(
+          height: 300,
+          width: 400,
+          color: Colors.blue,
+          child: GestureDetector(
+            onTap: () async {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => MediterraneoPage()),
+              );
+            },
+          ),
+        ),
       ),
     );
     return scaffold;
