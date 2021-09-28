@@ -3,6 +3,7 @@ import 'package:flutter_application_1/Pages/comopolitan_Page.dart';
 import 'package:flutter_application_1/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/eko_page.dart';
+import 'package:flutter_application_1/check_state.dart';
 import 'Pages/mediterrâneo_Page.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,14 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  bool value = false;
+
+  final notifications = [
+    CheckBoxState(title: 'titulos'),
+    CheckBoxState(title: 'titulos'),
+    CheckBoxState(title: 'titulos'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     var scaffold = Scaffold(
@@ -33,9 +42,7 @@ class HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.people),
               title: Text('Portal do Cliente'),
-              onTap: () {
-                print("Colocar a url do `Portal do Cliente`");
-              },
+              onTap: () => launch('https://knoveseg.com.br/'),
             ),
           ],
         ),
@@ -46,55 +53,20 @@ class HomePageState extends State<HomePage> {
           CustomSwitch(),
         ],
       ),
-      body: Center(
-        child: Container(
-          height: 100,
-          width: 100,
-          color: Colors.red,
-          child: GestureDetector(
-            onTap: () async {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => EkoPage()),
-              );
-            },
+      body: ListView(
+        padding: EdgeInsents.all(12),
+        children: [
+          CheckboxListTile(
+            controlAffinity: ListTileControlAffinity.leading,
+            activeColor: Colors.orange,
+            value: value,
+            title: Text(
+              'Messages',
+              style: TextStyle(fontSize: 20),
+            ),
+            onChanged: (value) => setState(() => this.value = value!),
           ),
-        ),
-        child: Container(
-          height: 100,
-          width: 400,
-          color: Colors.green,
-          child: GestureDetector(
-            onTap: () async {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => PlazaPage()),
-              );
-            },
-          ),
-        ),
-        child: Container(
-          height: 300,
-          width: 100,
-          color: Colors.purple,
-          child: GestureDetector(
-            onTap: () async {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => ComopolitanPage()),
-              );
-            },
-          ),
-        ),
-        child: Container(
-          height: 300,
-          width: 400,
-          color: Colors.blue,
-          child: GestureDetector(
-            onTap: () async {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => MediterraneoPage()),
-              );
-            },
-          ),
-        ),
+        ],
       ),
     );
     return scaffold;
