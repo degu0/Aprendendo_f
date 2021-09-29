@@ -42,7 +42,7 @@ class HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.people),
               title: Text('Portal do Cliente'),
-              onTap: () => launch('https://knoveseg.com.br/'),
+              onTap: () => launch('https://servico.knoveseg.com.br/login'),
             ),
           ],
         ),
