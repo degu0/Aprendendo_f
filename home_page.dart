@@ -4,6 +4,7 @@ import 'package:flutter_application_1/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Pages/eko_page.dart';
 import 'package:flutter_application_1/check_state.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'Pages/mediterrâneo_Page.dart';
 
 class HomePage extends StatefulWidget {
@@ -42,7 +43,7 @@ class HomePageState extends State<HomePage> {
             ListTile(
               leading: Icon(Icons.people),
               title: Text('Portal do Cliente'),
-              onTap: () => launch('https://servico.knoveseg.com.br/login'),
+              onTap: () => launch('https://knoveseg.com.br/'),
             ),
           ],
         ),
@@ -54,7 +55,7 @@ class HomePageState extends State<HomePage> {
         ],
       ),
       body: ListView(
-        padding: EdgeInsents.all(12),
+        padding: EdgeInsets.all(12),
         children: [
           CheckboxListTile(
             controlAffinity: ListTileControlAffinity.leading,
